@@ -27,6 +27,12 @@
       overflow-x:hidden;
     }
 
+    /* ── LOGO TINT (recolor gold → accent cyan) ─────────────── */
+    /* filter: invert makes it white, then hue-rotate+saturate pushes to cyan */
+    .nav-logo-img {
+      filter: invert(1) sepia(1) saturate(4) hue-rotate(165deg) brightness(1.1);
+    }
+
     /* ── NAV ─────────────────────────────────────────────────── */
     #navbar {
       position:fixed; top:0; left:0; right:0; z-index:1000;
@@ -174,14 +180,8 @@
       font-size:1.02rem; margin-bottom:1rem;
     }
     .about-text p strong { color:var(--text); }
-    .about-tags { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.5rem; }
-    .tag {
-      background:rgba(0,198,255,.08); border:1px solid rgba(0,198,255,.2);
-      color:var(--accent); font-size:.78rem; font-weight:500;
-      padding:.3rem .8rem; border-radius:100px;
-    }
     .stats-grid {
-      display:grid; grid-template-columns:1fr 1fr; gap:1.25rem;
+      display:grid; grid-template-columns:1fr; gap:1.25rem;
     }
     .stat-card {
       background:var(--card); border:1px solid var(--border);
@@ -234,17 +234,233 @@
     .svc-desc { color:var(--muted); font-size:.88rem; line-height:1.7; }
 
     /* ── SKILLS ──────────────────────────────────────────────── */
-    .skills-grid {
-      display:flex; flex-wrap:wrap; gap:1rem 1.5rem;
+    .skills-categories {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:1.1rem;
+      max-width:980px;
     }
-    .skill-tag {
-      font-size:.95rem; font-weight:500; color:var(--text);
-      padding-bottom:5px;
-      background-image:linear-gradient(90deg,var(--accent),var(--accent2));
-      background-repeat:no-repeat;
-      background-size:100% 2px;
-      background-position:bottom left;
+    .skills-category {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:1rem 1rem 1.1rem;
     }
+    .skills-category h3 {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:.95rem;
+      font-weight:600;
+      margin-bottom:.8rem;
+    }
+    .logo-grid {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:.6rem;
+    }
+    .logo-item {
+      display:flex;
+      align-items:center;
+      gap:.55rem;
+      background:rgba(255,255,255,.02);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:10px;
+      padding:.45rem .5rem;
+    }
+    .logo-item img {
+      width:22px;
+      height:22px;
+      object-fit:contain;
+      flex-shrink:0;
+    }
+    .windows-logo {
+      width:22px;
+      height:22px;
+      flex-shrink:0;
+      display:block;
+    }
+    .logo-item span {
+      color:var(--text);
+      font-size:.8rem;
+      line-height:1.2;
+    }
+
+    /* ── LANDING PAGES ───────────────────────────────────────── */
+    .lp-grid {
+      display:grid; grid-template-columns:1.4fr 1fr;
+      gap:4rem; align-items:start;
+    }
+    @media(max-width:860px){ .lp-grid{ grid-template-columns:1fr; gap:2.5rem; } }
+    .lp-text p {
+      color:var(--muted); line-height:1.8; font-size:1.02rem; margin-bottom:1rem;
+    }
+    .lp-text p strong { color:var(--text); }
+    .lp-pillars {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:1rem; margin-top:1.75rem;
+    }
+    @media(max-width:500px){ .lp-pillars{ grid-template-columns:1fr; } }
+    .lp-pillar {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:12px; padding:1rem 1.1rem; transition:border-color .3s;
+    }
+    .lp-pillar:hover { border-color:rgba(24,212,255,.3); }
+    .lp-pillar-icon { font-size:1.2rem; margin-bottom:.4rem; }
+    .lp-pillar-title { font-weight:600; font-size:.88rem; margin-bottom:.3rem; }
+    .lp-pillar-desc  { color:var(--muted); font-size:.8rem; line-height:1.6; }
+    .lp-stat-stack { display:flex; flex-direction:column; gap:.85rem; margin-bottom:1.25rem; }
+    .lp-stat {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:12px; padding:1rem 1.25rem;
+      display:flex; align-items:center; gap:1rem;
+      transition:border-color .3s;
+    }
+    .lp-stat:hover { border-color:rgba(24,212,255,.3); }
+    .lp-stat-value {
+      font-family:'Space Grotesk',sans-serif; font-size:1.15rem; font-weight:700;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text; white-space:nowrap; min-width:52px;
+    }
+    .lp-stat-label { color:var(--muted); font-size:.8rem; line-height:1.55; }
+    .lp-note {
+      background:rgba(24,212,255,.06); border:1px solid rgba(24,212,255,.18);
+      border-radius:12px; padding:1rem 1.2rem;
+      color:var(--muted); font-size:.83rem; line-height:1.7;
+      font-style:italic;
+    }
+
+    /* ── COMPLETE PACKAGE ────────────────────────────────────── */
+    .package-block {
+      margin-top:2.5rem;
+      background:linear-gradient(135deg,rgba(24,212,255,.05),rgba(145,71,255,.07));
+      border:1px solid rgba(24,212,255,.15);
+      border-radius:20px; padding:2.25rem 2rem;
+    }
+    .package-header {
+      display:flex; align-items:center; gap:1rem; margin-bottom:1rem;
+    }
+    .package-icon { font-size:2rem; line-height:1; }
+    .package-title {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1.3rem; font-weight:600; margin:0;
+    }
+    .package-lead {
+      color:var(--muted); line-height:1.8; font-size:.97rem;
+      margin-bottom:1.75rem; max-width:680px;
+    }
+    .package-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:1.2rem; margin-bottom:1.75rem;
+    }
+    @media(max-width:640px){ .package-grid{ grid-template-columns:1fr; } }
+    .package-item {
+      display:flex; gap:.85rem; align-items:flex-start;
+      background:rgba(255,255,255,.03); border:1px solid var(--border);
+      border-radius:12px; padding:1.1rem 1.15rem;
+      transition:border-color .3s;
+    }
+    .package-item:hover { border-color:rgba(24,212,255,.3); }
+    .pkg-icon { font-size:1.3rem; line-height:1; flex-shrink:0; margin-top:.1rem; }
+    .pkg-title { font-weight:600; font-size:.92rem; margin-bottom:.3rem; }
+    .pkg-desc  { color:var(--muted); font-size:.83rem; line-height:1.65; }
+    .package-cta-row {
+      display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:1rem;
+      padding-top:1.5rem; border-top:1px solid var(--border);
+    }
+    .package-cta-text {
+      color:var(--muted); font-size:.9rem; font-weight:500;
+    }
+
+    /* ── WHO WE WORK WITH ───────────────────────────────────── */
+    .clients-row {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:1.5rem; margin-top:2.5rem;
+    }
+    @media(max-width:680px){ .clients-row{ grid-template-columns:1fr; } }
+    .client-card {
+      border-radius:18px; padding:2rem 1.75rem;
+      border:1px solid transparent;
+      position:relative; overflow:hidden;
+      transition:transform .3s, border-color .3s;
+    }
+    .client-card:hover { transform:translateY(-4px); }
+    .client-card.startups {
+      background:linear-gradient(135deg,rgba(24,212,255,.07),rgba(24,212,255,.02));
+      border-color:rgba(24,212,255,.2);
+    }
+    .client-card.startups:hover { border-color:rgba(24,212,255,.45); }
+    .client-card.enterprise {
+      background:linear-gradient(135deg,rgba(145,71,255,.08),rgba(145,71,255,.02));
+      border-color:rgba(145,71,255,.2);
+    }
+    .client-card.enterprise:hover { border-color:rgba(145,71,255,.45); }
+    .client-card-icon { font-size:2rem; margin-bottom:.9rem; }
+    .client-card-badge {
+      display:inline-block; font-size:.72rem; font-weight:700;
+      letter-spacing:.08em; text-transform:uppercase;
+      padding:.25rem .7rem; border-radius:20px; margin-bottom:.75rem;
+    }
+    .startups .client-card-badge {
+      background:rgba(24,212,255,.12); color:var(--accent);
+    }
+    .enterprise .client-card-badge {
+      background:rgba(145,71,255,.15); color:var(--accent2);
+    }
+    .client-card h4 {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1.15rem; font-weight:600; margin-bottom:.75rem;
+    }
+    .client-card p {
+      color:var(--muted); font-size:.88rem; line-height:1.75;
+    }
+    .client-card ul {
+      list-style:none; margin-top:.9rem; display:flex; flex-direction:column; gap:.4rem;
+    }
+    .client-card ul li {
+      color:var(--muted); font-size:.84rem;
+      padding-left:1.2rem; position:relative;
+    }
+    .client-card ul li::before {
+      content:'→'; position:absolute; left:0;
+      color:var(--accent); font-size:.8rem;
+    }
+    .enterprise .client-card ul li::before { color:var(--accent2); }
+
+    /* ── ROAS CHART ──────────────────────────────────────────── */
+    .roas-card {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:16px; padding:1.5rem 1.75rem 1.25rem;
+      margin-top:2.5rem; position:relative; overflow:hidden;
+    }
+    .roas-card-top {
+      display:flex; align-items:flex-start; justify-content:space-between;
+      margin-bottom:1rem; flex-wrap:wrap; gap:.5rem;
+    }
+    .roas-metric-label {
+      font-size:.7rem; font-weight:700; letter-spacing:.15em;
+      text-transform:uppercase; color:var(--muted); margin-bottom:.25rem;
+    }
+    .roas-metric-value {
+      font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:700;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text; line-height:1;
+    }
+    .roas-metric-range {
+      font-size:.72rem; color:var(--muted); margin-top:.3rem;
+    }
+    .roas-change-box { text-align:right; }
+    .roas-change-badge {
+      display:inline-flex; align-items:center; gap:.3rem;
+      background:rgba(74,222,128,.12); border:1px solid rgba(74,222,128,.25);
+      color:#4ade80; font-size:.8rem; font-weight:700;
+      padding:.3rem .8rem; border-radius:100px; margin-bottom:.3rem;
+    }
+    .roas-change-sub {
+      font-size:.68rem; color:var(--muted); text-align:right;
+    }
+    #roas-canvas { width:100%; height:180px; display:block; cursor:crosshair; }
 
     /* ── EXPERIENCE TIMELINE ─────────────────────────────────── */
     .timeline { position:relative; padding-left:1.5rem; }
@@ -262,10 +478,6 @@
       position:absolute; left:-2.18rem; top:.3rem;
       width:14px; height:14px; background:var(--accent);
       border-radius:50%; box-shadow:0 0 16px rgba(0,198,255,.65);
-    }
-    .tl-period {
-      font-size:.75rem; font-weight:700; letter-spacing:.07em;
-      text-transform:uppercase; color:var(--accent); margin-bottom:.35rem;
     }
     .tl-role {
       font-family:'Space Grotesk',sans-serif;
@@ -365,6 +577,46 @@
       border-top:1px solid var(--border);
     }
 
+    /* ── LOGO SIZING ─────────────────────────────────────────── */
+    .nav-logo {
+      display:flex; align-items:center; gap:.5rem;
+    }
+    .nav-logo-img {
+      width:28px; height:28px; object-fit:contain; flex-shrink:0;
+    }
+    .hero-name {
+      display:flex; align-items:center; justify-content:center; gap:.6rem;
+    }
+    .hero-logo-img {
+      width:52px; height:52px; object-fit:contain; flex-shrink:0;
+    }
+    /* Background watermark – contact section */
+    .contact-bg-logo {
+      position:absolute;
+      top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      width:min(480px, 70vw);
+      height:auto;
+      opacity:.04;
+      filter: invert(1) sepia(1) saturate(3) hue-rotate(165deg) brightness(1.2);
+      pointer-events:none;
+      z-index:0;
+      user-select:none;
+    }
+    /* Background watermark */
+    .hero-bg-logo {
+      position:absolute;
+      top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      width:min(520px, 75vw);
+      height:auto;
+      opacity:.04;
+      filter: invert(1) sepia(1) saturate(3) hue-rotate(165deg) brightness(1.2);
+      pointer-events:none;
+      z-index:0;
+      user-select:none;
+    }
+
     /* ── SCROLL-TO-TOP ───────────────────────────────────────── */
     #scroll-top {
       position:fixed; bottom:2rem; right:2rem;
@@ -389,12 +641,16 @@
 
 <!-- ══ NAV ══════════════════════════════════════════════════════ -->
 <nav id="navbar">
-  <div class="nav-logo">Harmony Lab</div>
+  <div class="nav-logo">
+    <img src="CsaklogoNagy.png" class="nav-logo-img" alt="Harmony Lab logo" />
+    Harmony Lab
+  </div>
   <button id="nav-toggle" aria-label="Toggle navigation">
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links" id="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#landingpages">Landing Pages</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -405,12 +661,15 @@
 <!-- ══ HERO ══════════════════════════════════════════════════════ -->
 <section id="hero">
   <canvas id="hero-canvas"></canvas>
+  <img src="CsaklogoNagy.png" class="hero-bg-logo" alt="" aria-hidden="true" />
   <div class="hero-content">
     <div class="hero-badge">
       <span class="hero-badge-dot"></span>
       Available for new projects
     </div>
-    <h1 class="hero-name">Harmony Lab</h1>
+    <h1 class="hero-name">
+      Harmony Lab
+    </h1>
     <p class="hero-subtitle" id="hero-subtitle"></p>
     <p class="hero-byline">led by <strong>Dr. Ákos Hornung</strong></p>
     <div class="hero-cta">
@@ -432,25 +691,10 @@
         <p>Our expertise spans <strong>PPC &amp; Paid Media</strong> — managing high-performance campaigns across Google Ads, Meta Ads, TikTok, and Microsoft Advertising — and <strong>Website &amp; Landing Page design</strong> built to convert the traffic we drive.</p>
         <p>With <strong>8 years of Project Management experience</strong> in multinational R&amp;D, we bring the same rigour to every client engagement — structured planning, budget discipline, and clear communication. Managing a campaign portfolio is no different from managing a project pipeline: both demand clear targets, fast iteration, and accountability for results.</p>
         <p>We design and build websites from layout and UX to interactive JavaScript elements. A well-designed landing page is part of the campaign: it's where ad spend either converts or dies.</p>
-        <div class="about-tags">
-          <span class="tag">Google Ads</span>
-          <span class="tag">Meta Ads</span>
-          <span class="tag">TikTok Ads</span>
-          <span class="tag">Microsoft Ads</span>
-          <span class="tag">GA4</span>
-          <span class="tag">Google Tag Manager</span>
-          <span class="tag">A/B Testing</span>
-          <span class="tag">Mailchimp</span>
-          <span class="tag">HTML &amp; CSS</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">UI/UX Design</span>
-          <span class="tag">Python</span>
-          <span class="tag">Data Analysis</span>
-        </div>
       </div>
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-number" data-target="3" data-suffix="+">0</div>
+          <div class="stat-number" data-target="5" data-suffix="+">0</div>
           <div class="stat-label">Years PPC Experience</div>
         </div>
         <div class="stat-card">
@@ -463,11 +707,170 @@
         </div>
       </div>
     </div>
+
+    <!-- ROAS Chart -->
+    <div class="roas-card">
+      <div class="roas-card-top">
+        <div>
+          <div class="roas-metric-label">Return on Ad Spend (ROAS)</div>
+          <div class="roas-metric-value">8.08</div>
+          <div class="roas-metric-range">Jan 2025 – Dec 2025</div>
+        </div>
+        <div class="roas-change-box">
+          <div class="roas-change-badge">↑ +442.3%</div>
+          <div class="roas-change-sub">vs. start of period (1.49)</div>
+        </div>
+      </div>
+      <canvas id="roas-canvas"></canvas>
+    </div>
+
+    <!-- Complete Package -->
+    <div class="package-block">
+      <div class="package-header">
+        <span class="package-icon">⚪</span>
+        <div>
+          <div class="section-label" style="margin-bottom:.2rem">The Full Picture</div>
+          <h3 class="package-title">One partner for your entire growth stack</h3>
+        </div>
+      </div>
+      <p class="package-lead">Most agencies hand you ads and step back. At Harmony Lab, we cover the complete loop — from the first impression to the closed lead — so nothing falls through the cracks.</p>
+      <div class="package-grid">
+        <div class="package-item">
+          <div class="pkg-icon">🎯</div>
+          <div>
+            <div class="pkg-title">Ad Creation &amp; Launch</div>
+            <div class="pkg-desc">Compelling creatives, precise audience targeting, and campaign structure built for scale — across Google, Meta, TikTok, and Microsoft Ads from day one.</div>
+          </div>
+        </div>
+        <div class="package-item">
+          <div class="pkg-icon">⚙️</div>
+          <div>
+            <div class="pkg-title">Ongoing Campaign Management</div>
+            <div class="pkg-desc">Continuous bid optimisation, A/B testing, budget reallocation, and performance reporting. Campaigns that improve every week, not just at launch.</div>
+          </div>
+        </div>
+        <div class="package-item">
+          <div class="pkg-icon">🔁</div>
+          <div>
+            <div class="pkg-title">Lead Generation Systems</div>
+            <div class="pkg-desc">Full-funnel strategy from ad click to captured lead — conversion-optimised landing pages, form integrations, and CRM-ready data flows that turn traffic into pipeline.</div>
+          </div>
+        </div>
+        <div class="package-item">
+          <div class="pkg-icon">✉️</div>
+          <div>
+            <div class="pkg-title">Email &amp; Nurture Automation</div>
+            <div class="pkg-desc">Automated Mailchimp flows, drip sequences, and algorithmic send logic that keep leads warm after the click — turning one-time visitors into repeat customers.</div>
+          </div>
+        </div>
+      </div>
+      <div class="package-cta-row">
+        <span class="package-cta-text">Ready to run the full system?</span>
+        <a href="#contact" class="btn btn-primary" style="font-size:.88rem;padding:.65rem 1.5rem">Get in touch →</a>
+      </div>
+    </div>
+
+    <!-- WHO WE WORK WITH -->
+    <div class="section-label" style="margin-top:3.5rem">Who We Work With</div>
+    <h2 class="section-title">Built for startups. Trusted by enterprises.</h2>
+    <div class="section-line"></div>
+    <p style="color:var(--muted);line-height:1.8;max-width:660px;margin-bottom:.5rem">
+      Harmony Lab adapts to where you are in your journey. Whether you're a founder launching your first campaign or a marketing director looking for specialist contract support, we have a model that fits.
+    </p>
+    <div class="clients-row">
+      <div class="client-card startups">
+        <div class="client-card-icon">🚀</div>
+        <div class="client-card-badge">Startups &amp; Small Businesses</div>
+        <h4>Full launch packages for growing brands</h4>
+        <p>Starting from scratch doesn't have to mean starting slow. We offer complete, ready-to-run packages that cover everything a new business needs to compete online from day one — no agency bloat, no guesswork.</p>
+        <ul>
+          <li>Ad account setup across Google, Meta &amp; more</li>
+          <li>Campaign creation, targeting &amp; launch</li>
+          <li>Conversion-optimised landing page</li>
+          <li>Email welcome &amp; nurture sequence</li>
+          <li>Monthly performance reporting &amp; iteration</li>
+        </ul>
+      </div>
+      <div class="client-card enterprise">
+        <div class="client-card-icon">🏢</div>
+        <div class="client-card-badge">Large Companies &amp; Agencies</div>
+        <h4>Expert contract support for in-house teams</h4>
+        <p>Sometimes your team needs a senior specialist to step in — for a product launch, a high-spend period, or to audit and fix underperforming accounts. We work flexibly as an embedded contract partner, not a replacement.</p>
+        <ul>
+          <li>PPC account audits &amp; restructuring</li>
+          <li>High-spend campaign strategy &amp; oversight</li>
+          <li>Landing page CRO for existing funnels</li>
+          <li>Paid media consultancy &amp; training</li>
+          <li>Short- or long-term contract engagements</li>
+        </ul>
+      </div>
+    </div>
+
   </div>
 </div>
 
-<!-- ══ SERVICES ════════════════════════════════════════════════════ -->
-<div class="section-bg">
+<!-- ══ LANDING PAGES ══════════════════════════════════════════════ -->
+<div id="lp-wrap">
+  <div class="section-wrap fade-in" id="landingpages">
+    <div class="section-label">Landing Page Design</div>
+    <h2 class="section-title">Pages built to convert</h2>
+    <div class="section-line"></div>
+    <div class="lp-grid">
+      <div class="lp-text">
+        <p>A paid campaign is only as strong as the page it leads to. At Harmony Lab, landing page design isn't an afterthought — it's a core part of every campaign we run. We design, build, and continuously optimise pages with a single goal: turning clicks into leads.</p>
+        <p>Our landing pages are built around <strong>conversion rate optimisation (CRO)</strong> principles from the ground up — clear value propositions, frictionless user journeys, trust signals, and CTAs placed with intent. Every element earns its position by serving the conversion goal.</p>
+        <p>We treat <strong>CTR (click-through rate)</strong> and <strong>CTA performance</strong> as live metrics, not launch-day checkboxes. Through iterative A/B testing of headlines, button copy, page layouts, and form designs, we consistently push conversion rates higher over the lifecycle of a campaign.</p>
+        <div class="lp-pillars">
+          <div class="lp-pillar">
+            <div class="lp-pillar-icon">⚡</div>
+            <div class="lp-pillar-title">Speed &amp; Core Web Vitals</div>
+            <div class="lp-pillar-desc">Fast-loading pages reduce bounce and improve Quality Score — directly lowering your cost per click.</div>
+          </div>
+          <div class="lp-pillar">
+            <div class="lp-pillar-icon">🎯</div>
+            <div class="lp-pillar-title">Message Match</div>
+            <div class="lp-pillar-desc">Ad copy and landing page content aligned precisely — visitors land on exactly what was promised, reducing drop-off.</div>
+          </div>
+          <div class="lp-pillar">
+            <div class="lp-pillar-icon">🧪</div>
+            <div class="lp-pillar-title">CTA Optimisation</div>
+            <div class="lp-pillar-desc">Systematic testing of button placement, copy, colour, and form length to find the combination that converts best for your audience.</div>
+          </div>
+          <div class="lp-pillar">
+            <div class="lp-pillar-icon">📱</div>
+            <div class="lp-pillar-title">Mobile-First Design</div>
+            <div class="lp-pillar-desc">The majority of ad clicks happen on mobile. Every page is designed and tested for thumb-friendly, distraction-free conversion on small screens.</div>
+          </div>
+        </div>
+      </div>
+      <div class="lp-side">
+        <div class="lp-stat-stack">
+          <div class="lp-stat">
+            <div class="lp-stat-value">↑ CTR</div>
+            <div class="lp-stat-label">Improved click-through rates through headline and CTA iteration</div>
+          </div>
+          <div class="lp-stat">
+            <div class="lp-stat-value">↓ CPA</div>
+            <div class="lp-stat-label">Lower cost per acquisition via friction reduction and form optimisation</div>
+          </div>
+          <div class="lp-stat">
+            <div class="lp-stat-value">↑ CVR</div>
+            <div class="lp-stat-label">Higher conversion rates from A/B tested page layouts and trust signals</div>
+          </div>
+          <div class="lp-stat">
+            <div class="lp-stat-value">↑ QS</div>
+            <div class="lp-stat-label">Better Google Ads Quality Scores through relevance and page experience</div>
+          </div>
+        </div>
+        <div class="lp-note">
+          We don't just build a page and move on. Landing pages are treated as living assets — monitored, tested, and improved alongside the campaigns they support.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SERVICES<div class="section-bg">
   <div class="section-wrap fade-in" id="services">
     <div class="section-label">What We Do</div>
     <h2 class="section-title">Paid Media &amp; Web Design</h2>
@@ -538,25 +941,69 @@
     <div class="section-label">Our Expertise</div>
     <h2 class="section-title">Skills &amp; Proficiency</h2>
     <div class="section-line"></div>
-    <div class="skills-grid">
+    <div class="skills-categories">
+      <div class="skills-category">
+        <h3>Paid Media Platforms</h3>
+        <div class="logo-grid">
+          <div class="logo-item">
+            <img src="https://cdn.simpleicons.org/googleads" alt="Google Ads logo" />
+            <span>Google Ads</span>
+          </div>
+          <div class="logo-item">
+            <img src="https://cdn.simpleicons.org/meta" alt="Meta logo" />
+            <span>Meta Ads</span>
+          </div>
+          <div class="logo-item">
+            <img src="https://cdn.simpleicons.org/tiktok" alt="TikTok logo" />
+            <span>TikTok Ads</span>
+          </div>
+          <div class="logo-item">
+            <svg class="windows-logo" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="2" width="9" height="9" fill="#f25022"></rect>
+              <rect x="13" y="2" width="9" height="9" fill="#7fba00"></rect>
+              <rect x="2" y="13" width="9" height="9" fill="#00a4ef"></rect>
+              <rect x="13" y="13" width="9" height="9" fill="#ffb900"></rect>
+            </svg>
+            <span>Microsoft Ads</span>
+          </div>
+        </div>
+      </div>
 
-      <span class="skill-tag">Meta Ads Manager</span>
-      <span class="skill-tag">Google Ads</span>
-      <span class="skill-tag">Google Analytics 4</span>
-      <span class="skill-tag">Conversion Tracking / GTM</span>
-      <span class="skill-tag">A/B Testing &amp; CRO</span>
-      <span class="skill-tag">Keyword Research</span>
-      <span class="skill-tag">TikTok Ads</span>
-      <span class="skill-tag">Microsoft Advertising</span>
-      <span class="skill-tag">Email Marketing / Mailchimp</span>
-      <span class="skill-tag">Project Management</span>
-      <span class="skill-tag">Data Analysis &amp; AI Tools</span>
-      <span class="skill-tag">Python &amp; Scripting</span>
-      <span class="skill-tag">HTML &amp; CSS</span>
-      <span class="skill-tag">JavaScript</span>
-      <span class="skill-tag">Responsive / UX Design</span>
-      <span class="skill-tag">Landing Page CRO</span>
+      <div class="skills-category">
+        <h3>Analytics &amp; Tracking</h3>
+        <div class="logo-grid">
+          <div class="logo-item">
+            <img src="https://cdn.simpleicons.org/googleanalytics" alt="Google Analytics logo" />
+            <span>Google Analytics 4</span>
+          </div>
+          <div class="logo-item">
+            <img src="https://cdn.simpleicons.org/googletagmanager" alt="Google Tag Manager logo" />
+            <span>Google Tag Manager</span>
+          </div>
+          <div class="logo-item">
+            <img src="https://cdn.simpleicons.org/mailchimp" alt="Mailchimp logo" />
+            <span>Mailchimp</span>
+          </div>
+        </div>
+      </div>
 
+      <div class="skills-category">
+        <h3>Web Design &amp; Build</h3>
+        <div class="logo-grid">
+          <div class="logo-item">
+            <img src="https://cdn.simpleicons.org/html5" alt="HTML5 logo" />
+            <span>HTML</span>
+          </div>
+          <div class="logo-item">
+            <img src="https://cdn.simpleicons.org/css" alt="CSS logo" />
+            <span>CSS</span>
+          </div>
+          <div class="logo-item">
+            <img src="https://cdn.simpleicons.org/javascript" alt="JavaScript logo" />
+            <span>JavaScript</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -571,30 +1018,28 @@
 
       <div class="tl-item">
         <div class="tl-dot"></div>
-        <div class="tl-period">Mar 2023 – Present</div>
-        <div class="tl-role">Paid Media Management</div>
-        <div class="tl-company">Harmony Lab — PPC &amp; Paid Media Services</div>
+        <div class="tl-role">Paid Media &amp; Performance Systems</div>
+        <div class="tl-company">Harmony Lab — Execution Across Major Ad Platforms</div>
         <ul class="tl-list">
-          <li>Managing and optimising paid campaigns across Meta Ads and Google Ads for maximum ROAS and efficiency.</li>
-          <li>Improving client ROAS through A/B testing of creatives, audiences, and bidding strategies.</li>
-          <li>Keyword research and full implementation of Google Search, Display, and YouTube campaigns.</li>
-          <li>Conversion tracking setup and maintenance using Meta Pixel and Google Tag Manager.</li>
-          <li>Performance monitoring via Google Analytics 4 with regular data-driven optimisation reporting.</li>
-          <li>Mailchimp email campaigns, automated flows, and algorithmic mailing systems for client retention.</li>
+          <li>Google Ads strategy and optimisation across Search, Display, and YouTube to drive profitable growth.</li>
+          <li>Meta Ads campaign management with structured audience testing and creative iteration for stronger ROAS.</li>
+          <li>TikTok Ads and Microsoft Ads deployment to expand reach and capture additional qualified demand.</li>
+          <li>GA4 and Google Tag Manager implementation for reliable conversion tracking and reporting clarity.</li>
+          <li>A/B testing frameworks used continuously to improve creative performance, targeting, and bid efficiency.</li>
+          <li>Mailchimp lifecycle flows that connect paid traffic with retention-focused email nurturing.</li>
         </ul>
       </div>
 
       <div class="tl-item">
         <div class="tl-dot"></div>
-        <div class="tl-period">Aug 2018 – Present</div>
-        <div class="tl-role">Project Management &amp; Analytics</div>
-        <div class="tl-company">Harmony Lab — Strategy &amp; Project Services</div>
+        <div class="tl-role">Web Design, CRO &amp; Delivery Operations</div>
+        <div class="tl-company">Harmony Lab — Conversion-Focused Build &amp; Optimisation</div>
         <ul class="tl-list">
-          <li>End-to-end project planning: timetables, budgets, resource allocation, and milestone tracking for complex client engagements.</li>
-          <li>Coordination of interdisciplinary teams and international stakeholder management.</li>
-          <li>Integration of evolving client requirements into live projects while maintaining schedule and budget targets.</li>
-          <li>High-dimensional data analysis, AI-assisted analytics, and Python scripting applied to campaign and business data.</li>
-          <li>Concept and business development support — arriving at solutions that are both technically sound and commercially viable.</li>
+          <li>Landing pages designed with HTML, CSS, and JavaScript to align directly with ad intent and user journey.</li>
+          <li>UI/UX design decisions centered on faster comprehension, clearer offers, and stronger CTA interaction.</li>
+          <li>Page-level CRO methodology focused on reducing friction and lifting CTR-to-lead conversion.</li>
+          <li>Project-managed delivery that keeps ads, landing pages, and tracking aligned under one execution plan.</li>
+          <li>Data-led optimisation loops that translate campaign signals into practical design and messaging updates.</li>
         </ul>
       </div>
 
@@ -603,7 +1048,8 @@
 </div>
 
 <!-- ══ CONTACT ═════════════════════════════════════════════════════ -->
-<div id="contact-wrap">
+<div id="contact-wrap" style="position:relative;overflow:hidden;">
+  <img src="CsaklogoNagy.png" class="contact-bg-logo" alt="" aria-hidden="true" />
   <div class="section-wrap fade-in" id="contact">
     <div class="section-label">Get In Touch</div>
     <h2 class="section-title">Let's Work Together</h2>
@@ -657,7 +1103,7 @@
 
 <!-- ══ FOOTER ══════════════════════════════════════════════════════ -->
 <footer>
-  <p>© 2025 Harmony Lab · Dr. Ákos Hornung · Pécs, Hungary</p>
+  <p>© 2023 Harmony Lab · Dr. Ákos Hornung · Pécs, Hungary</p>
 </footer>
 
 <!-- ══ SCROLL-TO-TOP ════════════════════════════════════════════════ -->
@@ -748,12 +1194,12 @@
 
   /* ── TYPING ANIMATION ────────────────────────────────────────── */
   const phrases = [
-    'PPC & Paid Media Specialist',
-    'Google Ads & Meta Ads Expert',
-    'Web Designer & Developer',
-    'Performance Campaign Manager',
-    'Landing Page Specialist',
-    'Data-Driven Growth Partner'
+    'PPC & Paid Media Expertise',
+    'Google Ads & Meta Ads Management',
+    'Web Design & Development',
+    'Performance Campaign Strategy',
+    'Landing Page Optimisation',
+    'Data-Driven Growth Solutions'
   ];
   let pi = 0, ci = 0, del = false;
   const subtitleEl = document.getElementById('hero-subtitle');
@@ -819,7 +1265,7 @@
   /* ── NAV ACTIVE + SCROLL-TOP ─────────────────────────────────── */
   const navAs   = document.querySelectorAll('.nav-links a');
   const scrollBtn = document.getElementById('scroll-top');
-  const trackedIds = ['about','services','skills','experience','contact'];
+  const trackedIds = ['about','landingpages','services','skills','experience','contact'];
 
   window.addEventListener('scroll', () => {
     const sy = window.scrollY;
@@ -849,6 +1295,223 @@
     this.style.display = 'none';
     document.getElementById('phone-number').style.display = 'inline';
   });
+
+  /* ── ROAS CHART ──────────────────────────────────────────────── */
+  (function(){
+    const rc = document.getElementById('roas-canvas');
+
+    // 12 monthly ROAS values Jan–Dec, starting 0.89 → ending 2.48
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const data   = [1.49, 2.31, 3.44, 2.87, 4.12, 2.65, 4.78, 4.21, 6.05, 6.88, 6.82, 8.08];
+
+    let progress = 0, started = false;
+    let hoverIdx = -1;
+
+    const PAD = { t:14, r:20, b:34, l:52 };
+    const Y_TICKS = [2, 4, 6, 8];
+
+    function draw(prog){
+      const dpr = window.devicePixelRatio || 1;
+      const W   = rc.offsetWidth  || 400;
+      const H   = rc.offsetHeight || 180;
+      rc.width  = W * dpr;
+      rc.height = H * dpr;
+      const ctx = rc.getContext('2d');
+      ctx.scale(dpr, dpr);
+
+      const cw = W - PAD.l - PAD.r;
+      const ch = H - PAD.t - PAD.b;
+      const yMin = 0.5, yMax = 9.2;
+
+      function px(i){ return PAD.l + (i / (data.length - 1)) * cw; }
+      function py(v){ return PAD.t + ch - ((v - yMin) / (yMax - yMin)) * ch; }
+
+      // ── Y-axis grid + labels
+      ctx.font = '10px Inter, sans-serif';
+      ctx.textAlign = 'right';
+      Y_TICKS.forEach(v => {
+        const y = py(v);
+        ctx.strokeStyle = 'rgba(255,255,255,.06)';
+        ctx.lineWidth   = 1;
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath(); ctx.moveTo(PAD.l, y); ctx.lineTo(PAD.l + cw, y); ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = 'rgba(148,163,184,.55)';
+        ctx.fillText(v.toFixed(1) + 'x', PAD.l - 8, y + 3.5);
+      });
+
+      // ── X-axis month labels
+      ctx.textAlign = 'center';
+      ctx.fillStyle = 'rgba(148,163,184,.55)';
+      ctx.font = '10px Inter, sans-serif';
+      months.forEach((m, i) => {
+        ctx.fillText(m, px(i), PAD.t + ch + 18);
+      });
+
+      // how many points to draw
+      const visCount = Math.max(2, prog * (data.length - 1) + 1);
+
+      // ── Build bezier path up to visCount
+      function buildPath(count){
+        ctx.beginPath();
+        ctx.moveTo(px(0), py(data[0]));
+        const full = Math.floor(count);
+        for(let i = 0; i < Math.min(full, data.length - 1); i++){
+          const x0 = px(i),   y0 = py(data[i]);
+          const x1 = px(i+1), y1 = py(data[i+1]);
+          const cpx = (x0 + x1) / 2;
+          ctx.bezierCurveTo(cpx, y0, cpx, y1, x1, y1);
+        }
+        // partial last segment
+        if(count < data.length - 1 && full < data.length - 1){
+          const frac = count - full;
+          const x0 = px(full),   y0 = py(data[full]);
+          const x1 = px(full+1), y1 = py(data[full+1]);
+          const cpx = (x0+x1)/2;
+          // approximate point on bezier
+          const t = frac;
+          const bx = (1-t)*(1-t)*x0 + 2*(1-t)*t*cpx + t*t*x1;
+          const by = (1-t)*(1-t)*y0 + 2*(1-t)*t*y0  + t*t*y1;
+          ctx.bezierCurveTo(cpx, y0, cpx, by, bx, by);
+        }
+      }
+
+      // ── Gradient fill
+      const fillGrad = ctx.createLinearGradient(0, PAD.t, 0, PAD.t + ch);
+      fillGrad.addColorStop(0,   'rgba(24,212,255,.22)');
+      fillGrad.addColorStop(.5,  'rgba(145,71,255,.10)');
+      fillGrad.addColorStop(1,   'rgba(24,212,255,.0)');
+
+      const tipX = visCount >= data.length
+        ? px(data.length - 1)
+        : PAD.l + ((visCount - 1) / (data.length - 1)) * cw;
+      const tipY = visCount >= data.length
+        ? py(data[data.length - 1])
+        : py(data[Math.floor(visCount - 1)]);
+
+      buildPath(visCount);
+      ctx.lineTo(tipX, PAD.t + ch);
+      ctx.lineTo(PAD.l, PAD.t + ch);
+      ctx.closePath();
+      ctx.fillStyle = fillGrad;
+      ctx.fill();
+
+      // ── Glow
+      buildPath(visCount);
+      ctx.strokeStyle = 'rgba(24,212,255,.15)';
+      ctx.lineWidth   = 8;
+      ctx.lineJoin    = 'round'; ctx.lineCap = 'round';
+      ctx.stroke();
+
+      // ── Main line (gradient stroke via clip trick)
+      const lineGrad = ctx.createLinearGradient(PAD.l, 0, PAD.l + cw, 0);
+      lineGrad.addColorStop(0,   '#18d4ff');
+      lineGrad.addColorStop(.55, '#9147ff');
+      lineGrad.addColorStop(1,   '#18d4ff');
+      buildPath(visCount);
+      ctx.strokeStyle = lineGrad;
+      ctx.lineWidth   = 2.5;
+      ctx.stroke();
+
+      // ── Data point dots (small)
+      const fullPts = Math.floor(visCount);
+      for(let i = 0; i <= Math.min(fullPts, data.length - 1); i++){
+        ctx.beginPath();
+        ctx.arc(px(i), py(data[i]), 3, 0, Math.PI*2);
+        ctx.fillStyle   = i === hoverIdx ? '#fff' : 'rgba(24,212,255,.75)';
+        ctx.strokeStyle = '#18d4ff';
+        ctx.lineWidth   = 1.5;
+        ctx.fill(); ctx.stroke();
+      }
+
+      // ── Animated tip dot
+      if(prog < 1){
+        ctx.beginPath();
+        ctx.arc(tipX, tipY, 5, 0, Math.PI*2);
+        ctx.fillStyle   = '#18d4ff';
+        ctx.shadowColor = '#18d4ff';
+        ctx.shadowBlur  = 16;
+        ctx.fill();
+        ctx.shadowBlur  = 0;
+      }
+
+      // ── Hover tooltip
+      if(hoverIdx >= 0 && hoverIdx < data.length && prog >= 1){
+        const hx = px(hoverIdx);
+        const hy = py(data[hoverIdx]);
+        const val = data[hoverIdx].toFixed(2) + 'x';
+        const mon = months[hoverIdx];
+        const label = mon + '  ' + val;
+        const tw = ctx.measureText(label).width + 20;
+        const th = 28;
+        let bx = hx - tw / 2;
+        if(bx < PAD.l) bx = PAD.l;
+        if(bx + tw > W - PAD.r) bx = W - PAD.r - tw;
+        const by = hy - th - 10;
+
+        // vertical guide line
+        ctx.strokeStyle = 'rgba(24,212,255,.25)';
+        ctx.lineWidth   = 1;
+        ctx.setLineDash([3,3]);
+        ctx.beginPath(); ctx.moveTo(hx, PAD.t); ctx.lineTo(hx, PAD.t+ch); ctx.stroke();
+        ctx.setLineDash([]);
+
+        // tooltip box
+        ctx.fillStyle   = '#131929';
+        ctx.strokeStyle = 'rgba(24,212,255,.4)';
+        ctx.lineWidth   = 1;
+        ctx.beginPath();
+        ctx.roundRect(bx, by, tw, th, 6);
+        ctx.fill(); ctx.stroke();
+
+        ctx.fillStyle  = '#e2e8f0';
+        ctx.font       = 'bold 11px Inter, sans-serif';
+        ctx.textAlign  = 'left';
+        ctx.fillText(mon, bx + 10, by + 17);
+        ctx.fillStyle  = '#18d4ff';
+        ctx.fillText(val, bx + 10 + ctx.measureText(mon + '  ').width, by + 17);
+
+        // highlighted dot
+        ctx.beginPath();
+        ctx.arc(hx, hy, 5.5, 0, Math.PI*2);
+        ctx.fillStyle   = '#18d4ff';
+        ctx.shadowColor = '#18d4ff';
+        ctx.shadowBlur  = 18;
+        ctx.fill();
+        ctx.shadowBlur  = 0;
+      }
+    }
+
+    function animate(){
+      progress += 0.028;
+      draw(Math.min(progress, 1));
+      if(progress < 1) requestAnimationFrame(animate);
+    }
+
+    // hover
+    rc.addEventListener('mousemove', e => {
+      if(progress < 1) return;
+      const rect = rc.getBoundingClientRect();
+      const mx   = e.clientX - rect.left;
+      const cw   = rc.offsetWidth - PAD.l - PAD.r;
+      const step = cw / (data.length - 1);
+      const idx  = Math.round((mx - PAD.l) / step);
+      hoverIdx   = Math.max(0, Math.min(data.length - 1, idx));
+      draw(1);
+    });
+    rc.addEventListener('mouseleave', () => { hoverIdx = -1; draw(1); });
+
+    const roasIO = new IntersectionObserver(entries => {
+      if(entries[0].isIntersecting && !started){
+        started = true;
+        animate();
+        roasIO.disconnect();
+      }
+    }, { threshold: 0.3 });
+    roasIO.observe(rc);
+
+    window.addEventListener('resize', () => { if(started) draw(Math.min(progress,1)); });
+  })();
 
   /* ── CONTACT FORM (Formspree AJAX) ───────────────────────────── */
   const form      = document.getElementById('contact-form');
