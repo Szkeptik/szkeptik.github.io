@@ -1,5 +1,3 @@
-# szkeptik.github.io
-PPC webpage
 <!DOCTYPE html>
 <html lang="en">
 <head>
